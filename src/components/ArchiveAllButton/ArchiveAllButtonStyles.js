@@ -1,10 +1,11 @@
 import { css } from "@emotion/react";
 
 export const buttonStyle = css`
-  background-color: #007bff;
-  color: white;
+  background-color: #effffc;
+  color: #27c1a7;
   &:hover {
-    background-color: #0056b3;
+    background-color: #27c1a7;
+    color: white;
   }
   @media (max-width: 600px) {
     margin-bottom: 10px;

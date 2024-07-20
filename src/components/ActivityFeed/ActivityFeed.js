@@ -54,37 +54,44 @@ const groupCallsByDate = (calls) => {
 };
 
 const ActivityFeed = ({ calls, currentTab, setCalls }) => {
+  if (!calls) {
+    return <p>Loading calls...</p>;
+  }
   const groupedCalls = groupCallsByDate(calls);
 
   return (
     <List css={styledList}>
-      {Object.keys(groupedCalls).map((date) => (
-        <div key={date}>
-          <div css={dateHeader}>{date}</div>
-          {groupedCalls[date].map((call) => (
-            <ListItemButton css={styledListItemButton} key={call.id}>
-              <div css={callDetails}>
-                {getCallDirectionIcon(call.direction)}
-                {currentTab === "inbox" && getCallTypeIcon(call.call_type)}
-                <ListItemText
-                  primary={`From: ${call.from}`}
-                  secondary={
-                    currentTab === "inbox"
-                      ? `To: ${call.to} | Via: ${call.via} | Type: ${call.call_type}`
-                      : `To: ${call.to}`
-                  }
-                />
-              </div>
-              <div css={callTime}>
-                {new Date(call.created_at).toLocaleTimeString()}
-              </div>
-              <ListItemSecondaryAction>
-                <ArchiveButton call={call} setCalls={setCalls} />
-              </ListItemSecondaryAction>
-            </ListItemButton>
-          ))}
-        </div>
-      ))}
+      {Object.keys(groupedCalls).length === 0 ? (
+        <p>No archived calls</p>
+      ) : (
+        Object.keys(groupedCalls).map((date) => (
+          <div key={date}>
+            <div css={dateHeader}>{date}</div>
+            {groupedCalls[date].map((call) => (
+              <ListItemButton css={styledListItemButton} key={call.id}>
+                <div css={callDetails}>
+                  {getCallDirectionIcon(call.direction)}
+                  {currentTab === "inbox" && getCallTypeIcon(call.call_type)}
+                  <ListItemText
+                    primary={`From: ${call.from}`}
+                    secondary={
+                      currentTab === "inbox"
+                        ? `To: ${call.to} | Via: ${call.via} | Type: ${call.call_type}`
+                        : `To: ${call.to}`
+                    }
+                  />
+                </div>
+                <div css={callTime}>
+                  {new Date(call.created_at).toLocaleTimeString()}
+                </div>
+                <ListItemSecondaryAction>
+                  <ArchiveButton call={call} setCalls={setCalls} />
+                </ListItemSecondaryAction>
+              </ListItemButton>
+            ))}
+          </div>
+        ))
+      )}
     </List>
   );
 };

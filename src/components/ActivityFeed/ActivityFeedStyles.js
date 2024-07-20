@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 
 export const styledList = css`
-  background-color: white;
+  background-color: #27c1a7;
   border-radius: 10px;
   width: 100%;
   max-width: 800px;

@@ -1,75 +1,64 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState, useEffect } from "react";
-import { css } from "@emotion/react";
 import Header from "./components/Header/Header";
 import ActivityFeed from "./components/ActivityFeed/ActivityFeed";
 import ArchiveAllButton from "./components/ArchiveAllButton/ArchiveAllButton";
 import UnarchiveAllButton from "./components/UnarchiveAllButton/UnarchiveAllButton";
 import TabsComponent from "./components/TabsComponent/TabsComponent";
-
-const appContainerStyle = css`
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  width: 100%;
-  max-width: 425px; /* Ensure it looks like a mobile app */
-  margin: 0 auto; /* Center it horizontally */
-  background-color: #f5f5f5;
-  @media (max-width: 600px) {
-    width: 100%; /* Full width on small screens */
-  }
-`;
-
-const contentContainerStyle = css`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow-y: auto;
-`;
-
-const actionsContainerStyle = css`
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  background-color: white;
-  width: 100%;
-  max-width: 800px;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-  @media (max-width: 600px) {
-    flex-direction: column;
-    align-items: center;
-    max-width: 100%;
-  }
-`;
+import { Button } from "@mui/material";
+import useCallActions from "./hooks/useCallActions";
+import {
+  appContainerStyle,
+  contentContainerStyle,
+  actionsContainerStyle,
+} from "./styles/AppStyles";
 
 const App = () => {
-  const [calls, setCalls] = useState([]);
+  const { calls, setCalls, handleArchiveAll, handleUndoArchive } =
+    useCallActions();
   const [currentTab, setCurrentTab] = useState("activity");
+  const [hasArchived, setHasArchived] = useState(false);
 
   useEffect(() => {
-    fetch("https://aircall-backend.onrender.com/activities")
-      .then((response) => response.json())
-      .then((data) => setCalls(data))
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []);
+    console.log("Fetched calls:", calls);
+  }, [calls]);
 
   const filteredCalls = () => {
+    if (!calls) {
+      return [];
+    }
+    let filtered;
     switch (currentTab) {
       case "activity":
-        return calls.filter((call) => !call.is_archived);
+        filtered = calls.filter((call) => !call.is_archived);
+        break;
       case "inbox":
-        return calls.filter(
+        filtered = calls.filter(
           (call) =>
             call.call_type === "missed" || call.call_type === "voicemail"
         );
+        break;
       case "all-calls":
-        return calls;
+        filtered = calls;
+        break;
       case "archived":
-        return calls.filter((call) => call.is_archived);
+        filtered = calls.filter((call) => call.is_archived);
+        break;
       default:
-        return calls;
+        filtered = calls;
     }
+    console.log(`Filtered calls for ${currentTab}:`, filtered);
+    return filtered;
+  };
+
+  const handleArchiveAllWithCheck = () => {
+    handleArchiveAll();
+    setHasArchived(true);
+  };
+
+  const handleUndoArchiveWithCheck = () => {
+    handleUndoArchive();
+    setHasArchived(false);
   };
 
   return (
@@ -79,7 +68,12 @@ const App = () => {
       <div css={contentContainerStyle}>
         <div css={actionsContainerStyle}>
           {currentTab === "activity" && (
-            <ArchiveAllButton calls={calls} setCalls={setCalls} />
+            <>
+              <ArchiveAllButton handleArchiveAll={handleArchiveAllWithCheck} />
+              {hasArchived && (
+                <Button onClick={handleUndoArchiveWithCheck}>Undo</Button>
+              )}
+            </>
           )}
           {currentTab === "archived" && (
             <UnarchiveAllButton setCalls={setCalls} />
