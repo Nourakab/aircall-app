@@ -53,16 +53,13 @@ const groupCallsByDate = (calls) => {
   }, {});
 };
 
-const ActivityFeed = ({ calls, currentTab, setCalls }) => {
-  if (!calls) {
-    return <p>Loading calls...</p>;
-  }
+const ActivityFeed = ({ calls, currentTab, setCalls, handleArchive }) => {
   const groupedCalls = groupCallsByDate(calls);
 
   return (
     <List css={styledList}>
       {Object.keys(groupedCalls).length === 0 ? (
-        <p>No archived calls</p>
+        <p>No active calls</p>
       ) : (
         Object.keys(groupedCalls).map((date) => (
           <div key={date}>
@@ -85,7 +82,11 @@ const ActivityFeed = ({ calls, currentTab, setCalls }) => {
                   {new Date(call.created_at).toLocaleTimeString()}
                 </div>
                 <ListItemSecondaryAction>
-                  <ArchiveButton call={call} setCalls={setCalls} />
+                  <ArchiveButton
+                    call={call}
+                    setCalls={setCalls}
+                    handleArchive={handleArchive}
+                  />
                 </ListItemSecondaryAction>
               </ListItemButton>
             ))}

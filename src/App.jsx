@@ -5,8 +5,9 @@ import ActivityFeed from "./components/ActivityFeed/ActivityFeed";
 import ArchiveAllButton from "./components/ArchiveAllButton/ArchiveAllButton";
 import UnarchiveAllButton from "./components/UnarchiveAllButton/UnarchiveAllButton";
 import TabsComponent from "./components/TabsComponent/TabsComponent";
-import { Button } from "@mui/material";
+import Snackbar from "@mui/material/Snackbar";
 import useCallActions from "./hooks/useCallActions";
+import UndoButton from "./components/UndoButton/UndoButton";
 import {
   appContainerStyle,
   contentContainerStyle,
@@ -14,14 +15,26 @@ import {
 } from "./styles/AppStyles";
 
 const App = () => {
-  const { calls, setCalls, handleArchiveAll, handleUndoArchive } =
-    useCallActions();
+  const {
+    calls,
+    setCalls,
+    handleArchiveAll,
+    handleUndoArchiveAll,
+    handleUndoArchive,
+    handleArchive,
+  } = useCallActions();
   const [currentTab, setCurrentTab] = useState("activity");
-  const [hasArchived, setHasArchived] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [undoAction, setUndoAction] = useState(null);
 
   useEffect(() => {
     console.log("Fetched calls:", calls);
   }, [calls]);
+
+  useEffect(() => {
+    setUndoAction(null);
+    setSnackbarOpen(false);
+  }, [currentTab]);
 
   const filteredCalls = () => {
     if (!calls) {
@@ -53,12 +66,19 @@ const App = () => {
 
   const handleArchiveAllWithCheck = () => {
     handleArchiveAll();
-    setHasArchived(true);
+    setUndoAction("archiveAll");
+    setSnackbarOpen(true);
   };
 
-  const handleUndoArchiveWithCheck = () => {
-    handleUndoArchive();
-    setHasArchived(false);
+  const handleUndoArchiveAllWithCheck = () => {
+    handleUndoArchiveAll();
+    setSnackbarOpen(false);
+  };
+
+  const handleArchiveWithCheck = (call) => {
+    handleArchive(call);
+    setUndoAction("archive");
+    setSnackbarOpen(true);
   };
 
   return (
@@ -70,8 +90,8 @@ const App = () => {
           {currentTab === "activity" && (
             <>
               <ArchiveAllButton handleArchiveAll={handleArchiveAllWithCheck} />
-              {hasArchived && (
-                <Button onClick={handleUndoArchiveWithCheck}>Undo</Button>
+              {undoAction === "archiveAll" && (
+                <UndoButton handleUndo={handleUndoArchiveAllWithCheck} />
               )}
             </>
           )}
@@ -83,8 +103,28 @@ const App = () => {
           calls={filteredCalls()}
           currentTab={currentTab}
           setCalls={setCalls}
+          handleArchive={handleArchiveWithCheck}
         />
       </div>
+      <Snackbar
+        open={snackbarOpen}
+        message={
+          undoAction === "archiveAll"
+            ? "All calls archived. Click undo to revert."
+            : "Call archived. Click undo to revert."
+        }
+        autoHideDuration={6000}
+        onClose={() => setSnackbarOpen(false)}
+        action={
+          <UndoButton
+            handleUndo={
+              undoAction === "archiveAll"
+                ? handleUndoArchiveAllWithCheck
+                : handleUndoArchive
+            }
+          />
+        }
+      />
     </div>
   );
 };
