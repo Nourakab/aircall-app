@@ -1,8 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
 import { IconButton } from "@mui/material";
-import ArchiveIcon from "@mui/icons-material/Archive";
-import UnarchiveIcon from "@mui/icons-material/Unarchive";
+import { BiSolidArchiveIn, BiSolidArchiveOut } from "react-icons/bi";
 import { iconButtonStyle } from "./ArchiveButtonStyles";
 
 const ArchiveButton = ({ call, handleArchive }) => {
@@ -14,7 +13,7 @@ const ArchiveButton = ({ call, handleArchive }) => {
       edge="end"
       onClick={() => handleArchive(call)}
     >
-      {call.is_archived ? <UnarchiveIcon /> : <ArchiveIcon />}
+      {call.is_archived ? <BiSolidArchiveOut /> : <BiSolidArchiveIn />}
     </IconButton>
   );
 };

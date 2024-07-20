@@ -21,11 +21,11 @@ import { PiVoicemailFill } from "react-icons/pi";
 const getCallTypeIcon = (callType) => {
   switch (callType) {
     case "missed":
-      return <LuPhoneMissed />;
+      return <LuPhoneMissed style={{ color: "red" }} />;
     case "answered":
-      return <FiPhoneCall />;
+      return <FiPhoneCall style={{ color: "red" }} />;
     case "voicemail":
-      return <PiVoicemailFill />;
+      return <PiVoicemailFill style={{ color: "red" }} />;
     default:
       return null;
   }
@@ -34,9 +34,9 @@ const getCallTypeIcon = (callType) => {
 const getCallDirectionIcon = (direction) => {
   switch (direction) {
     case "outbound":
-      return <LuPhoneOutgoing />;
+      return <LuPhoneOutgoing style={{ color: "red" }} />;
     case "inbound":
-      return <FiPhoneIncoming />;
+      return <FiPhoneIncoming style={{ color: "red" }} />;
     default:
       return null;
   }
@@ -79,7 +79,10 @@ const ActivityFeed = ({ calls, currentTab, setCalls, handleArchive }) => {
                   />
                 </div>
                 <div css={callTime}>
-                  {new Date(call.created_at).toLocaleTimeString()}
+                  {new Date(call.created_at).toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
                 </div>
                 <ListItemSecondaryAction>
                   <ArchiveButton
