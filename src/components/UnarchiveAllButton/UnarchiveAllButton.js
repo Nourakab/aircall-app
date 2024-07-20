@@ -1,7 +1,5 @@
-/** @jsxImportSource @emotion/react */
 import React from "react";
-import { Button } from "@mui/material";
-import { buttonStyle } from "./UnarchiveAllButtonStyles";
+import "./UnarchiveAllButton.css";
 
 const UnarchiveAllButton = ({ setCalls }) => {
   const handleUnarchiveAll = () => {
@@ -26,9 +24,9 @@ const UnarchiveAllButton = ({ setCalls }) => {
   };
 
   return (
-    <Button css={buttonStyle} onClick={handleUnarchiveAll}>
+    <button className="unarchive-button" onClick={handleUnarchiveAll}>
       Unarchive All
-    </Button>
+    </button>
   );
 };
 

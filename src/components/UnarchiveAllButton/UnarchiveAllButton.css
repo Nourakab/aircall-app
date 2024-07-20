@@ -1,0 +1,20 @@
+.unarchive-button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .unarchive-button:hover {
+    background-color: #c9302c;
+  }
+  
+  @media (max-width: 600px) {
+    .unarchive-button {
+      margin-bottom: 10px;
+    }
+  }
+  

@@ -1,13 +1,11 @@
-/** @jsxImportSource @emotion/react */
 import React from "react";
-import { Button } from "@mui/material";
-import { buttonStyle } from "./ArchiveAllButtonStyles";
+import "./ArchiveAllButton.css";
 
 const ArchiveAllButton = ({ handleArchiveAll }) => {
   return (
-    <Button css={buttonStyle} onClick={handleArchiveAll}>
+    <button className="button" onClick={handleArchiveAll}>
       Archive All
-    </Button>
+    </button>
   );
 };
 

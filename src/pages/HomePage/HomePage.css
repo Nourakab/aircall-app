@@ -1,0 +1,42 @@
+.homeContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    background-color: white;
+  }
+  
+  @media (max-width: 600px) {
+    .homeContainer {
+      width: 100%;
+    }
+  }
+  
+  .contentContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+  }
+  
+  .actionsContainer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    width: 100%;
+    max-width: 800px;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  @media (max-width: 600px) {
+    .actionsContainer {
+      flex-direction: column;
+      align-items: center;
+      max-width: 100%;
+    }
+  }
+  

@@ -1,22 +1,13 @@
-/** @jsxImportSource @emotion/react */
 import React from "react";
-import { AppBar, Toolbar, Typography } from "@mui/material";
-import { styledAppBar, styledTypography } from "./HeaderStyles";
+import "./Header.css";
 
 const Header = () => {
   return (
-    <AppBar css={styledAppBar} position="static">
-      <Toolbar>
-        <Typography
-          css={styledTypography}
-          variant="h6"
-          component="div"
-          sx={{ flexGrow: 1 }}
-        >
-          Aircall Phone
-        </Typography>
-      </Toolbar>
-    </AppBar>
+    <header className="header">
+      <div className="toolbar">
+        <h1 className="title">Aircall Phone</h1>
+      </div>
+    </header>
   );
 };
 

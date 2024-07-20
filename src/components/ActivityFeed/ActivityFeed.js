@@ -1,31 +1,23 @@
-/** @jsxImportSource @emotion/react */
-import React from "react";
-import {
-  List,
-  ListItemButton,
-  ListItemText,
-  ListItemSecondaryAction,
-} from "@mui/material";
+import React, { useState } from "react";
+import { Collapse } from "react-collapse";
 import ArchiveButton from "../ArchiveButton/ArchiveButton";
 import {
-  styledList,
-  styledListItemButton,
-  dateHeader,
-  callDetails,
-  callTime,
-} from "./ActivityFeedStyles";
-import { FiPhoneIncoming, FiPhoneCall } from "react-icons/fi";
-import { LuPhoneOutgoing, LuPhoneMissed } from "react-icons/lu";
+  BsFillTelephoneInboundFill,
+  BsFillTelephoneOutboundFill,
+} from "react-icons/bs";
+import { FiPhoneCall } from "react-icons/fi";
+import { LuPhoneMissed } from "react-icons/lu";
 import { PiVoicemailFill } from "react-icons/pi";
+import "./ActivityFeed.css";
 
 const getCallTypeIcon = (callType) => {
   switch (callType) {
     case "missed":
-      return <LuPhoneMissed style={{ color: "red" }} />;
+      return <LuPhoneMissed className="iconStyle" style={{ color: "red" }} />;
     case "answered":
-      return <FiPhoneCall style={{ color: "red" }} />;
+      return <FiPhoneCall className="iconStyle" style={{ color: "red" }} />;
     case "voicemail":
-      return <PiVoicemailFill style={{ color: "red" }} />;
+      return <PiVoicemailFill className="iconStyle" style={{ color: "red" }} />;
     default:
       return null;
   }
@@ -34,9 +26,19 @@ const getCallTypeIcon = (callType) => {
 const getCallDirectionIcon = (direction) => {
   switch (direction) {
     case "outbound":
-      return <LuPhoneOutgoing style={{ color: "red" }} />;
+      return (
+        <BsFillTelephoneOutboundFill
+          className="iconStyle"
+          style={{ color: "#0680d1" }}
+        />
+      );
     case "inbound":
-      return <FiPhoneIncoming style={{ color: "red" }} />;
+      return (
+        <BsFillTelephoneInboundFill
+          className="iconStyle"
+          style={{ color: "#15d1cc" }}
+        />
+      );
     default:
       return null;
   }
@@ -53,50 +55,94 @@ const groupCallsByDate = (calls) => {
   }, {});
 };
 
+const formatDuration = (seconds) => {
+  if (seconds < 60) {
+    return `${seconds.toString().padStart(2, "0")} sec`;
+  }
+  const minutes = Math.floor(seconds / 60);
+  return `${minutes} min`;
+};
+
 const ActivityFeed = ({ calls, currentTab, setCalls, handleArchive }) => {
   const groupedCalls = groupCallsByDate(calls);
+  const [openCall, setOpenCall] = useState(null);
+
+  const toggleCallDetails = (callId) => {
+    setOpenCall((prevOpenCall) => (prevOpenCall === callId ? null : callId));
+  };
 
   return (
-    <List css={styledList}>
+    <ul className="styledList">
       {Object.keys(groupedCalls).length === 0 ? (
         <p>No active calls</p>
       ) : (
         Object.keys(groupedCalls).map((date) => (
           <div key={date}>
-            <div css={dateHeader}>{date}</div>
+            <div className="dateHeader">{date}</div>
             {groupedCalls[date].map((call) => (
-              <ListItemButton css={styledListItemButton} key={call.id}>
-                <div css={callDetails}>
-                  {getCallDirectionIcon(call.direction)}
-                  {currentTab === "inbox" && getCallTypeIcon(call.call_type)}
-                  <ListItemText
-                    primary={`From: ${call.from}`}
-                    secondary={
-                      currentTab === "inbox"
-                        ? `To: ${call.to} | Via: ${call.via} | Type: ${call.call_type}`
-                        : `To: ${call.to}`
-                    }
-                  />
-                </div>
-                <div css={callTime}>
-                  {new Date(call.created_at).toLocaleTimeString([], {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}
-                </div>
-                <ListItemSecondaryAction>
+              <div key={call.id}>
+                <li
+                  className="styledListItemButton"
+                  onClick={() => toggleCallDetails(call.id)}
+                >
+                  <div className="callDetails">
+                    {getCallDirectionIcon(call.direction)}
+                    {currentTab === "inbox" && getCallTypeIcon(call.call_type)}
+                    <div>
+                      <div
+                        style={{
+                          fontFamily: "Afacad",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {call.direction === "inbound"
+                          ? ` ${call.from}`
+                          : ` ${call.to}`}
+                      </div>
+                      {currentTab === "inbox" && (
+                        <div
+                          style={{
+                            fontFamily: "Afacad",
+                            color: "grey",
+                          }}
+                        >
+                          {`Via: ${call.via} | Type: ${call.call_type}`}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <div className="callTimeContainer">
+                    <div className="callTime">
+                      {new Date(call.created_at).toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </div>
+                    <div className="callDuration">
+                      <FiPhoneCall className="iconStyle" />
+                      {formatDuration(call.duration)}
+                    </div>
+                  </div>
                   <ArchiveButton
                     call={call}
                     setCalls={setCalls}
                     handleArchive={handleArchive}
                   />
-                </ListItemSecondaryAction>
-              </ListItemButton>
+                </li>
+                <Collapse isOpened={openCall === call.id}>
+                  <div style={{ padding: "0 16px 16px 16px" }}>
+                    <p>Additional Call Details:</p>
+                    <p>Call Type: {call.call_type}</p>
+                    <p>Via: {call.via}</p>
+                    {/* Add more details as needed */}
+                  </div>
+                </Collapse>
+              </div>
             ))}
           </div>
         ))
       )}
-    </List>
+    </ul>
   );
 };
 

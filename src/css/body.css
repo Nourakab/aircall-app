@@ -1,14 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&display=swap');
+
 html, body, h1, h2, h3, ul, li {
   margin: 0;
   padding: 0;
   border: 0;
   font: inherit;
   font-size: 100%;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 body {
   background: #f5f5f5;
-  font-family: helvetica, arial, sans-serif;
+  font-family: 'Afacad', sans-serif;
   font-size: 13px;
   color: #3333;
   line-height: 1;

@@ -1,0 +1,26 @@
+.header {
+    background-color: #effffc;
+    box-shadow: none;
+    border-bottom: 1px solid #e0e0e0;
+    width: 100%;
+    padding: 10px 20px;
+  }
+  
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .title {
+    color: black;
+    font-weight: bold;
+    font-size: 24px;
+  }
+  
+  @media (max-width: 600px) {
+    .title {
+      font-size: 18px;
+    }
+  }
+  

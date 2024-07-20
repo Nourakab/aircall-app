@@ -1,12 +1,10 @@
-/** @jsxImportSource @emotion/react */
 import React from "react";
-import { Button } from "@mui/material";
-import { buttonStyle } from "./UndoButtonStyles";
+import "./UndoButton.css";
 
 const UndoButton = ({ handleUndo }) => (
-  <Button css={buttonStyle} onClick={handleUndo}>
+  <button className="undo-button" onClick={handleUndo}>
     Undo
-  </Button>
+  </button>
 );
 
 export default UndoButton;
