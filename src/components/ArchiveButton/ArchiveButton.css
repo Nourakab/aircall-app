@@ -1,15 +1,18 @@
 .icon-button {
-    color: grey;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-    border-radius: 4px;
-    font-size: 22px;
-  }
-  
-  .icon-button:hover {
-    background-color: #27c1a7; /* Set the hover background color */
-    color: white; /* Set the hover text color */
-  }
-  
+  color: grey;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 22px;
+}
+
+.icon-button:hover {
+  background-color: #27c1a7;
+  color: white;
+}
+
+.icon-button.archived {
+  color: red; /* Color for archived calls */
+}

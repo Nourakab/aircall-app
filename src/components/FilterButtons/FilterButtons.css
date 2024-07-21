@@ -4,6 +4,9 @@
     gap: 10px;
     margin: 10px 0;
     justify-content: center;
+   
+
+
   }
   
   .filter-buttons.hidden {
@@ -24,9 +27,5 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
   
-  .filter-button.selected {
-    background-color: #27c1a7;
-    color: white;
-    font-weight: bold;
-  }
+
   
