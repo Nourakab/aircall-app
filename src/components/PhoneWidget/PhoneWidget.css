@@ -1,0 +1,132 @@
+.phone-widget {
+    position: fixed;
+    top: 215px;
+    left: 0;
+    width: 300px;
+    height: 500px;
+    background: linear-gradient(180deg, #14ced4 0%, #effdf1 100%);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    border-radius: 10px;
+  }
+  
+  .phone-widget.visible {
+    transform: translateX(0);
+  }
+  
+  .phone-widget-header {
+    padding: 10px;
+    background-color: #27c1a7;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  .phone-widget-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .user-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    margin-bottom: 20px;
+  }
+  
+  .call-timer {
+    margin-top: 10px;
+    font-size: 18px;
+  }
+  
+  .control-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .control-button {
+    background-color: #27c1a7;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .control-button.keypad-active {
+    border: 2px solid #d3efe5;
+    background-color: #d3efe5;
+    color: #11cbd8;
+  }
+  
+  .keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .keypad-button {
+    background: none;
+    border: none;
+    color: #11cbd8;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .keypad-number {
+    font-size: 24px;
+  }
+  
+  .keypad-letters {
+    font-size: 12px;
+    margin-top: -5px;
+  }
+  
+  .call-buttons {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .call-button {
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #27c1a7;
+    color: white;
+    font-size: 24px;
+    margin: 0 5px;
+  }
+  
+  .call-button.hang-up {
+    background-color: #ff4d4d;
+    color: white;
+  }
+  
+  /* Media Queries */
+  @media (max-width: 600px) {
+    .phone-widget {
+      top: 290px;
+    }
+  }
+  

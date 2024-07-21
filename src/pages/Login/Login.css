@@ -1,0 +1,214 @@
+
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    border-radius: 16px ;
+ 
+  }
+  
+  .login-card {
+    display: flex;
+    max-width: 900px;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: auto;
+  }
+  
+  .login-card-left {
+    padding: 40px;
+    background: url('/aircall.jpeg') no-repeat center center;
+    background-size: cover; /* Adjusted to use the background image */
+    color: white;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-card-left h1 {
+    margin-bottom: 130px;
+    font-size: 2em;
+    font-family: 'Afacad', sans-serif; 
+  }
+  
+  .login-card-left p {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+  }
+  
+  .login-card-right {
+    padding: 40px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .login-card-right h2 {
+    margin-bottom: 5px;
+    font-size: 1em;
+  }
+  
+  .login-card-right h3 {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+  }
+  .login-card-right p {
+    margin-bottom: 20px;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .login-form .error-message {
+    color: red;
+    margin-bottom: 10px;
+  }
+
+  .password-requirements {
+    font-size: 0.9em;
+    margin-top: 10px;
+  }
+  
+  .password-requirements p {
+    margin: 5px 0;
+  }
+  
+  .valid {
+    color: green;
+  }
+  
+  .invalid {
+    color: red;
+  }
+
+  .login-form label {
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    color: #555;
+  }
+  
+  .login-form input,
+  .login-form select {
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: none; 
+    border-bottom: 2px solid transparent;
+    border-image: linear-gradient(135deg, #b40dd1, #680dd1);
+    border-image-slice: 1;
+    width: 100%;
+    background-color: transparent;
+    outline: none; 
+  }
+
+  .login-form input::placeholder,
+.login-form select::placeholder {
+  color: #e086f0; 
+  opacity: 1; /* For older browsers */
+  font-family: 'Afacad', sans-serif; 
+}
+
+.login-form input:focus,
+.login-form select:focus {
+  border-bottom: 2px solid;
+  border-image: linear-gradient(135deg, #b40dd1, #680dd1);
+  border-image-slice: 1;
+}
+
+.login-form select {
+    color: #e086f0; 
+  }
+  
+  
+  .login-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-actions button {
+    display: flex;
+    padding: 10px 100px;
+    margin-top: 20px;
+    background: linear-gradient(135deg, #b40dd1, #680dd1 );
+    border: none;
+    border-radius: 8px; /* Added border-radius for buttons */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .login-actions button:hover {
+    background-color: #9f5edc;
+  }
+
+  /* Media Queries for Responsiveness */
+  @media (max-width: 768px) {
+    .login-card {
+      display: flex;
+      max-width: 600px;
+ 
+    }
+  
+    .login-card-left {
+        padding: 40px;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+    .login-card-left p {
+      font-size: 1.2em;
+      margin-bottom: 150px;
+    }
+  
+    .login-card-right {
+      padding-top: 0;
+    }
+  
+    .login-actions button {
+      padding: 10px 50px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .login-card {
+      flex-direction: column;
+      max-width: 100%;
+    }
+  
+    .login-card-left {
+      padding: 20px;
+      text-align: center;
+    }
+  
+    .login-card-left h1 {
+      font-size: 1.5em;
+    }
+  
+    .login-card-left p,
+    .login-card-right h2,
+    .login-card-right h3,
+    .login-card-right p {
+      font-size: 1em;
+    }
+  
+    .login-actions button {
+      padding: 10px;
+      font-size: 0.9em;
+    }
+  }
+  
+  

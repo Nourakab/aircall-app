@@ -3,6 +3,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import FilterButtons from "../FilterButtons/FilterButtons";
 import CallList from "./CallList";
 import Snackbar from "../Snackbar/Snackbar";
+import PhoneWidget from "../PhoneWidget/PhoneWidget";
 import { TiFilter } from "react-icons/ti";
 import { groupCallsByDate } from "../../utils";
 import "./ActivityFeed.css";
@@ -15,7 +16,7 @@ const ActivityFeed = ({ calls, currentTab, setCalls, handleArchive }) => {
   const [filtersVisible, setFiltersVisible] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [undoAction, setUndoAction] = useState(null);
-  const [snackbarKey, setSnackbarKey] = useState(0);
+  const [phoneWidgetVisible, setPhoneWidgetVisible] = useState(false);
 
   const toggleCallDetails = (callId) => {
     setOpenCall((prevOpenCall) => (prevOpenCall === callId ? null : callId));
@@ -36,7 +37,6 @@ const ActivityFeed = ({ calls, currentTab, setCalls, handleArchive }) => {
       // Undo logic here
       handleArchive({ ...call, is_archived: !call.is_archived });
     });
-    setSnackbarKey((prevKey) => prevKey + 1);
   };
 
   const filteredCalls = Object.keys(groupedCalls).reduce((acc, date) => {
@@ -69,6 +69,13 @@ const ActivityFeed = ({ calls, currentTab, setCalls, handleArchive }) => {
 
   return (
     <div className="activity-feed-container">
+      <button
+        className="phone-widget-toggle-button"
+        onClick={() => setPhoneWidgetVisible(!phoneWidgetVisible)}
+      >
+        Toggle Phone Widget
+      </button>
+      <PhoneWidget isVisible={phoneWidgetVisible} />
       <div className="search-filter-container">
         <SearchBar searchQuery={searchQuery} handleSearch={handleSearch} />
         <FilterButtons
@@ -102,7 +109,6 @@ const ActivityFeed = ({ calls, currentTab, setCalls, handleArchive }) => {
         setCalls={setCalls}
       />
       <Snackbar
-        key={snackbarKey}
         message={snackbarMessage}
         actionLabel="UNDO"
         onAction={undoAction}

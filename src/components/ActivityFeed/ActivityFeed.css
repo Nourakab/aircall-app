@@ -5,6 +5,7 @@
     justify-content: center;
     width: 100%;
     padding: 20px;
+    position: relative;
 }
 
 .search-filter-container {
@@ -29,6 +30,25 @@
   .filter-buttons-mobile {
     display: none;
   }
+
+  .phone-widget-toggle-button {
+    position: fixed;
+    left: 10px;
+    top: 80px;
+    z-index: 1001;
+    background-color: #27c1a7;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  
+  .phone-widget-toggle-button:hover {
+    background-color: #1e9f92;
+  }
+  
 .styledList {
     background-color: white;
     width: 100%;
@@ -176,6 +196,10 @@
         margin-left: auto;
       }
 
+  .phone-widget-toggle-button {
+    top: 108px;
+ 
+  }
     
   }
   
