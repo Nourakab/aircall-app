@@ -1,0 +1,32 @@
+.filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px 0;
+    justify-content: center;
+  }
+  
+  .filter-buttons.hidden {
+    display: none;
+  }
+  
+  .filter-buttons.visible {
+    display: flex;
+  }
+  
+  .filter-button {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: white;
+    color: #333;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .filter-button.selected {
+    background-color: #27c1a7;
+    color: white;
+    font-weight: bold;
+  }
+  
