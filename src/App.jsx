@@ -5,12 +5,12 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import { UserContext } from "./context/UserContext";
+import { UserContext, UserProvider } from "./context/UserContext";
 import Login from "./pages/Login";
 import HomePage from "./pages/HomePage/HomePage";
 
 const App = () => {
-  const { user } = useContext(UserContext); // Access user from UserContext
+  const { user } = useContext(UserContext);
 
   return (
     <Router>
@@ -25,4 +25,10 @@ const App = () => {
   );
 };
 
-export default App;
+const WrappedApp = () => (
+  <UserProvider>
+    <App />
+  </UserProvider>
+);
+
+export default WrappedApp;

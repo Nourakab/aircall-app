@@ -1,12 +1,22 @@
-
-.login-container {
+@keyframes wave {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+  
+  .login-container {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
     width: 100%;
-    border-radius: 16px ;
- 
+    border-radius: 16px;
+    background: linear-gradient(135deg, #90dbb4, #effffc) fixed;
+    background-size: 200% 200%;
+    animation: wave 10s linear infinite;
   }
   
   .login-card {
@@ -23,8 +33,9 @@
   .login-card-left {
     padding: 40px;
     background: url('/aircall.jpeg') no-repeat center center;
-    background-size: cover; /* Adjusted to use the background image */
-    color: white;
+    background-size: cover; 
+    color: #1f2684;
+    font-weight: bold;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -33,14 +44,16 @@
   }
   
   .login-card-left h1 {
-    margin-bottom: 130px;
     font-size: 2em;
-    font-family: 'Afacad', sans-serif; 
+    font-family: 'Afacad', sans-serif;
+    margin-top: -141px;
+    margin-bottom: 183px;
   }
   
   .login-card-left p {
-    font-size: 1.2em;
-    margin-bottom: 40px;
+    font-size: 18px;
+    margin-bottom: 26px;
+    margin-left: 136px;
   }
   
   .login-card-right {
@@ -49,6 +62,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    color: #afbefc;
   }
   
   .login-card-right h2 {
@@ -60,6 +74,7 @@
     margin-bottom: 20px;
     font-size: 1.5em;
   }
+  
   .login-card-right p {
     margin-bottom: 20px;
   }
@@ -73,7 +88,7 @@
     color: red;
     margin-bottom: 10px;
   }
-
+  
   .password-requirements {
     font-size: 0.9em;
     margin-top: 10px;
@@ -90,7 +105,7 @@
   .invalid {
     color: red;
   }
-
+  
   .login-form label {
     margin-bottom: 10px;
     font-size: 0.9em;
@@ -102,33 +117,32 @@
     padding: 10px;
     margin-top: 5px;
     margin-bottom: 20px;
-    border: none; 
+    border: none;
     border-bottom: 2px solid transparent;
-    border-image: linear-gradient(135deg, #b40dd1, #680dd1);
+    border-image: linear-gradient(135deg, #effdf1, #14ced4);
     border-image-slice: 1;
     width: 100%;
     background-color: transparent;
-    outline: none; 
-  }
-
-  .login-form input::placeholder,
-.login-form select::placeholder {
-  color: #e086f0; 
-  opacity: 1; /* For older browsers */
-  font-family: 'Afacad', sans-serif; 
-}
-
-.login-form input:focus,
-.login-form select:focus {
-  border-bottom: 2px solid;
-  border-image: linear-gradient(135deg, #b40dd1, #680dd1);
-  border-image-slice: 1;
-}
-
-.login-form select {
-    color: #e086f0; 
+    outline: none;
   }
   
+  .login-form input::placeholder,
+  .login-form select::placeholder {
+    color: #5b77f2;
+    opacity: 1;
+    font-family: 'Afacad', sans-serif;
+  }
+  
+  .login-form input:focus,
+  .login-form select:focus {
+    border-bottom: 2px solid;
+    border-image: linear-gradient(135deg, #effdf1, #14ced4);
+    border-image-slice: 1;
+  }
+  
+  .login-form select {
+    color: #5b77f2;
+  }
   
   .login-actions {
     display: flex;
@@ -140,35 +154,34 @@
     display: flex;
     padding: 10px 100px;
     margin-top: 20px;
-    background: linear-gradient(135deg, #b40dd1, #680dd1 );
+    background: linear-gradient(135deg, #effdf1, #14ced4);
     border: none;
-    border-radius: 8px; /* Added border-radius for buttons */
-    color: white;
+    border-radius: 8px;
+    color: #5b77f2;
+    font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s;
   }
   
   .login-actions button:hover {
-    background-color: #9f5edc;
+    background-color: #5b77f2;
   }
-
-  /* Media Queries for Responsiveness */
+  
   @media (max-width: 768px) {
     .login-card {
       display: flex;
       max-width: 600px;
- 
     }
   
     .login-card-left {
-        padding: 40px;
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-      }
-
+      padding: 40px;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+  
     .login-card-left p {
       font-size: 1.2em;
       margin-bottom: 150px;
@@ -210,5 +223,4 @@
       font-size: 0.9em;
     }
   }
-  
   
