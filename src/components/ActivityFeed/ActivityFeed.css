@@ -9,6 +9,13 @@
  
 }
 
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .search-filter-container {
     display: flex;
     align-items: center;
@@ -30,24 +37,6 @@
   
   .filter-buttons-mobile {
     display: none;
-  }
-
-  .phone-widget-toggle-button {
-    position: fixed;
-    left: 10px;
-    top: 140px;
-    z-index: 1001;
-    background-color: #27c1a7;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 4px;
-    margin-bottom: 20px;
-  }
-  
-  .phone-widget-toggle-button:hover {
-    background-color: #1e9f92;
   }
   
 .styledList {
@@ -158,14 +147,7 @@
   
 
   /* Media Queries */
-  @media (max-width: 350px) {
-    .phone-widget-toggle-button {
-      margin-top: 5px;
-      margin-left: -21px;
-       
-      }
 
-  }
   @media (max-width: 600px) {
 
     .filter-toggle-button {
@@ -204,13 +186,6 @@
         margin-right: 0;
         margin-left: auto;
       }
-
-      .phone-widget-toggle-button {
-        top: 183px;
-        left: 112px;
-       
-        
-    }
 
 
   }

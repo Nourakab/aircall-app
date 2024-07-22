@@ -3,7 +3,6 @@ import SearchBar from "../SearchBar/SearchBar";
 import FilterButtons from "../FilterButtons/FilterButtons";
 import CallList from "./CallList";
 import Snackbar from "../Snackbar/Snackbar";
-import PhoneWidget from "../PhoneWidget/PhoneWidget";
 import { TiFilter } from "react-icons/ti";
 import { groupCallsByDate } from "../../utils";
 import filterCallsByUserRole from "../../utils/filterCallsByUserRole";
@@ -19,7 +18,6 @@ const ActivityFeed = ({ calls, currentTab, setCalls, handleArchive }) => {
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [undoAction, setUndoAction] = useState(null);
-  const [phoneWidgetVisible, setPhoneWidgetVisible] = useState(false);
 
   useEffect(() => {}, [calls]);
 
@@ -94,36 +92,33 @@ const ActivityFeed = ({ calls, currentTab, setCalls, handleArchive }) => {
 
   return (
     <div className="activity-feed-container">
-      <button
-        className="phone-widget-toggle-button"
-        onClick={() => setPhoneWidgetVisible(!phoneWidgetVisible)}
-      >
-        Toggle Phone Widget
-      </button>
-      <PhoneWidget isVisible={phoneWidgetVisible} />
-      <div className="search-filter-container">
-        <SearchBar searchQuery={searchQuery} handleSearch={handleSearch} />
-        <FilterButtons
-          filterCriteria={filterCriteria}
-          handleFilterChange={handleFilterChange}
-        />
-        <button
-          className={`filter-toggle-button ${filtersVisible ? "selected" : ""}`}
-          onClick={() => setFiltersVisible(!filtersVisible)}
+      <div className="buttons-container">
+        <div className="search-filter-container">
+          <SearchBar searchQuery={searchQuery} handleSearch={handleSearch} />
+          <FilterButtons
+            filterCriteria={filterCriteria}
+            handleFilterChange={handleFilterChange}
+          />
+          <button
+            className={`filter-toggle-button ${
+              filtersVisible ? "selected" : ""
+            }`}
+            onClick={() => setFiltersVisible(!filtersVisible)}
+          >
+            <TiFilter size={24} />
+          </button>
+        </div>
+        <div
+          className={`filter-buttons-mobile ${
+            filtersVisible ? "visible" : "hidden"
+          }`}
         >
-          <TiFilter size={24} />
-        </button>
-      </div>
-      <div
-        className={`filter-buttons-mobile ${
-          filtersVisible ? "visible" : "hidden"
-        }`}
-      >
-        <FilterButtons
-          filterCriteria={filterCriteria}
-          handleFilterChange={handleFilterChange}
-          visible={filtersVisible}
-        />
+          <FilterButtons
+            filterCriteria={filterCriteria}
+            handleFilterChange={handleFilterChange}
+            visible={filtersVisible}
+          />
+        </div>
       </div>
       <CallList
         filteredCalls={filteredCallsByCriteria}

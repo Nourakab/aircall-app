@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { MdDialpad } from "react-icons/md";
 import Header from "../../components/Header";
 import ActivityFeed from "../../components/ActivityFeed";
 import ArchiveAllButton from "../../components/ArchiveAllButton";
@@ -6,6 +7,7 @@ import UnarchiveAllButton from "../../components/UnarchiveAllButton";
 import TabsComponent from "../../components/TabsComponent";
 import UndoButton from "../../components/UndoButton";
 import useCallActions from "../../hooks/useCallActions";
+import PhoneWidget from "../../components/PhoneWidget/PhoneWidget";
 import "./HomePage.css";
 
 const HomePage = () => {
@@ -19,6 +21,14 @@ const HomePage = () => {
   const [currentTab, setCurrentTab] = useState("activity");
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [undoAction, setUndoAction] = useState(null);
+  const [phoneWidgetVisible, setPhoneWidgetVisible] = useState(false);
+  const [isSmallDevice, setIsSmallDevice] = useState(window.innerWidth < 800);
+
+  useEffect(() => {
+    const handleResize = () => setIsSmallDevice(window.innerWidth < 800);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {}, [calls]);
 
@@ -69,6 +79,10 @@ const HomePage = () => {
     setTimeout(() => setSnackbarOpen(true), 100);
   };
 
+  const togglePhoneWidgetVisibility = () => {
+    setPhoneWidgetVisible(!phoneWidgetVisible);
+  };
+
   return (
     <div className="homeContainer">
       <Header />
@@ -86,6 +100,25 @@ const HomePage = () => {
           {currentTab === "archived" && (
             <UnarchiveAllButton setCalls={setCalls} />
           )}
+
+          {isSmallDevice ? (
+            <MdDialpad
+              size={24}
+              color="#27c1a7"
+              onClick={togglePhoneWidgetVisibility}
+            />
+          ) : (
+            <button
+              className="phone-widget-toggle-button"
+              onClick={togglePhoneWidgetVisibility}
+            >
+              Toggle Phone Widget
+            </button>
+          )}
+          <PhoneWidget
+            isVisible={phoneWidgetVisible}
+            toggleVisibility={togglePhoneWidgetVisibility}
+          />
         </div>
         <ActivityFeed
           calls={filteredCalls()}

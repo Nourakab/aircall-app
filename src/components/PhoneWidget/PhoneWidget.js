@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BsMicMute } from "react-icons/bs";
 import { IoIosKeypad } from "react-icons/io";
 import { PiSpeakerSimpleNoneThin } from "react-icons/pi";
 import { LuUserCircle2 } from "react-icons/lu";
 import { ImPhoneHangUp } from "react-icons/im";
+
 import "./PhoneWidget.css";
 
 const PhoneWidget = ({ isVisible }) => {
