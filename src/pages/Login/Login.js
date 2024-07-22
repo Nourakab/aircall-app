@@ -7,6 +7,7 @@ import Greeting from "./Greeting";
 import validatePassword from "./utils/validatePassword";
 import handlePasswordChange from "./utils/handlePasswordChange";
 import handleLogin from "./utils/handleLogin";
+import aircallImage from "../../../public/aircall.jpeg";
 
 const Login = () => {
   const { setUser, users } = useContext(UserContext);
@@ -46,10 +47,16 @@ const Login = () => {
       validatePassword,
     });
 
+  // Inline styles with the imported image
+  const loginCardLeftStyle = {
+    background: `url(${aircallImage}) no-repeat center center`,
+  };
+
   return (
     <div className="login-container">
       <div className="login-card">
-        <div className="login-card-left">
+        <div className="login-card-left" style={loginCardLeftStyle}>
+          <img />
           <h1>Welcome to the Aircall App</h1>
           <p>Sign In To Your Account</p>
         </div>
