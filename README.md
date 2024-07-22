@@ -19,6 +19,28 @@ Role-Based Filtering: Display calls relevant to the user's role.
 Search and Filter: Search for calls by number and filter calls based on type.
 Undo Actions: Undo the last archive action using a Snackbar notification.
 
+You have the choice to be an Owner (3 different owners created) or an Admin.
+Owner: can view its specific calls in the inbox tab
+Admin: can view the calls from the users in the inbox tab.
+
+Here are the login details:
+Owner 1
+Email: owner1@example.com
+Password: OwnerPass1!
+
+Owner 2
+Email: owner2@example.com
+Password: OwnerPass2!
+
+Owner 3
+Email: owner3@example.com
+Password: OwnerPass3!
+
+Admin
+Email: admin@example.com
+Password: AdminPass1234&
+For security, type the password AdminPass1234& twice.
+
 The tabs are explained as follow:
 
 Activity tab: Displays all active (non-archived) calls with an option to archive all calls.
@@ -26,14 +48,13 @@ It displays right off the bat the inbound, outbound calls.
 Call details displayed when the call is clicked
 
 Inbox tab: A subset of calls (e.g., missed or answered calls) based on specific criteria.
-
 We'll ensure that Owner 1 sees calls from/to 1, Owner 2 sees calls from/to 2, Owner 3 sees calls from/to 4, and Admin sees all calls except archived ones.
 
 All Calls tab: All calls, both active and archived.
 It displays the call direction - inbound or outbound call depending on the icon used.
 It displays the call if it was missed or answered depending on the icon used.
 
-Archived: Display only archived calls with an option to unarchive all calls.
+Archived tab: Display only archived calls with an option to unarchive all calls.
 
 ## Setup Instructions
 
@@ -63,25 +84,25 @@ REACT_APP_USER_1_NAME="Owner 1"
 REACT_APP_USER_1_ROLE="Owner"
 REACT_APP_USER_1_EMAIL="owner1@example.com"
 REACT_APP_USER_1_PASSWORD="OwnerPass1!"
-REACT_APP_USER_1_AVATAR="/owner1.png"
+
 
 REACT_APP_USER_2_NAME="Owner 2"
 REACT_APP_USER_2_ROLE="Owner"
 REACT_APP_USER_2_EMAIL="owner2@example.com"
 REACT_APP_USER_2_PASSWORD="OwnerPass2!"
-REACT_APP_USER_2_AVATAR="/owner2.png"
+
 
 REACT_APP_USER_3_NAME="Owner 3"
 REACT_APP_USER_3_ROLE="Owner"
 REACT_APP_USER_3_EMAIL="owner3@example.com"
 REACT_APP_USER_3_PASSWORD="OwnerPass3!"
-REACT_APP_USER_3_AVATAR="/owner3.png"
+
 
 REACT_APP_USER_4_NAME="Admin User"
 REACT_APP_USER_4_ROLE="Admin"
 REACT_APP_USER_4_EMAIL="admin@example.com"
 REACT_APP_USER_4_PASSWORD="AdminPass1234&"
-REACT_APP_USER_4_AVATAR="/admin.jpeg"
+
 
 
 ## Running the Project
