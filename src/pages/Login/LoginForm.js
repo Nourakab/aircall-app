@@ -14,7 +14,7 @@ const LoginForm = ({
   handlePasswordChange,
   isPasswordDirty,
   passwordValidations,
-  setErrorMessage, // Include setErrorMessage in the props
+  setErrorMessage,
 }) => (
   <div className="login-form">
     {errorMessage && <p className="error-message">{errorMessage}</p>}
