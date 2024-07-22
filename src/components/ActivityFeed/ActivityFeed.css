@@ -35,7 +35,7 @@
   .phone-widget-toggle-button {
     position: fixed;
     left: 10px;
-    top: 80px;
+    top: 140px;
     z-index: 1001;
     background-color: #27c1a7;
     color: white;
@@ -160,8 +160,8 @@
   /* Media Queries */
   @media (max-width: 350px) {
     .phone-widget-toggle-button {
-        margin-top: 7px;
-        margin-left: -27px;
+      margin-top: 5px;
+      margin-left: -21px;
        
       }
 
@@ -206,8 +206,10 @@
       }
 
       .phone-widget-toggle-button {
-        top: 188px;
-        left: 135px;
+        top: 183px;
+        left: 112px;
+       
+        
     }
 
 

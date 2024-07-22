@@ -13,7 +13,6 @@ const UnarchiveAllButton = ({ setCalls }) => {
         return response.text(); // Read response as text
       })
       .then((text) => {
-        console.log("Response Text:", text);
         // Assuming the reset endpoint returns the updated call list
         fetch("https://aircall-backend.onrender.com/activities")
           .then((response) => response.json())

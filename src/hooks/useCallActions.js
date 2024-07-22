@@ -8,14 +8,12 @@ const useCallActions = () => {
     fetch("https://aircall-backend.onrender.com/activities")
       .then((response) => response.json())
       .then((data) => {
-        console.log("Fetched calls:", data);
         setCalls(data);
       })
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
   const handleArchiveAll = (currentCalls) => {
-    console.log("Archiving all calls...");
     setPreviousCalls(calls);
     const updatedCalls = calls.map((call) =>
       currentCalls.includes(call) ? { ...call, is_archived: true } : call
@@ -36,7 +34,6 @@ const useCallActions = () => {
   };
 
   const handleUndoArchiveAll = () => {
-    console.log("Undoing archive...");
     setCalls(previousCalls);
     previousCalls.forEach((call) => {
       fetch(`https://aircall-backend.onrender.com/activities/${call.id}`, {
@@ -68,7 +65,6 @@ const useCallActions = () => {
         return response.text();
       })
       .then((text) => {
-        console.log("Response Text:", text);
         setCalls((prevCalls) =>
           prevCalls.map((c) =>
             c.id === call.id ? { ...c, is_archived: !c.is_archived } : c

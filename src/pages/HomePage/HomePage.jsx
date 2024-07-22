@@ -53,7 +53,7 @@ const HomePage = () => {
     const callsToArchive = filteredCalls();
     handleArchiveAll(callsToArchive);
     setUndoAction("archiveAll");
-    setSnackbarOpen(true);
+    setSnackbarOpen(false);
     setTimeout(() => setSnackbarOpen(true), 100);
   };
 
@@ -92,6 +92,7 @@ const HomePage = () => {
           currentTab={currentTab}
           setCalls={setCalls}
           handleArchive={handleArchiveWithCheck}
+          setSnackbarOpen={setSnackbarOpen}
         />
       </div>
     </div>

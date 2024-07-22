@@ -32,13 +32,23 @@
   }
 
   /* Media Queries */
+
   @media (max-width: 600px) {
     .tab-container {
         padding: 10px 20px; 
     }
 
     .tab {
-        min-width: 80px; 
+        min-width: 64px; 
+        padding: 10px;
+        font-size: 16px;
+    }
+  }
+
+  @media (max-width: 800px) {
+
+    .tab {
+        min-width: 64px; 
         padding: 10px;
         font-size: 16px;
     }

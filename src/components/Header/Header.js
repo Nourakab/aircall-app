@@ -5,8 +5,6 @@ import "./Header.css";
 const Header = () => {
   const { user } = useContext(UserContext);
 
-  console.log("Current User:", user);
-
   return (
     <header className="header">
       <div className="toolbar">

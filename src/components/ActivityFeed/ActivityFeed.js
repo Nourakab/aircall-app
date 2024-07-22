@@ -56,8 +56,6 @@ const ActivityFeed = ({ calls, currentTab, setCalls, handleArchive }) => {
   const userFilteredCalls =
     currentTab === "inbox" ? filterCallsByUserRole(calls, user) : calls;
 
-  console.log("User Filtered Calls:", userFilteredCalls);
-
   // Group filtered calls by date
   const groupedCalls = groupCallsByDate(userFilteredCalls);
 
