@@ -19,6 +19,22 @@ Role-Based Filtering: Display calls relevant to the user's role.
 Search and Filter: Search for calls by number and filter calls based on type.
 Undo Actions: Undo the last archive action using a Snackbar notification.
 
+The tabs are explained as follow:
+
+Activity tab: Displays all active (non-archived) calls with an option to archive all calls.
+It displays right off the bat the inbound, outbound calls.
+Call details displayed when the call is clicked
+
+Inbox tab: A subset of calls (e.g., missed or answered calls) based on specific criteria.
+
+We'll ensure that Owner 1 sees calls from/to 1, Owner 2 sees calls from/to 2, Owner 3 sees calls from/to 4, and Admin sees all calls except archived ones.
+
+All Calls tab: All calls, both active and archived.
+It displays the call direction - inbound or outbound call depending on the icon used.
+It displays the call if it was missed or answered depending on the icon used.
+
+Archived: Display only archived calls with an option to unarchive all calls.
+
 ## Setup Instructions
 
 ### Prerequisites
