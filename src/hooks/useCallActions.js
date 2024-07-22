@@ -2,22 +2,27 @@ import { useState, useEffect } from "react";
 
 const useCallActions = () => {
   const [calls, setCalls] = useState([]);
-  const [lastArchivedCall, setLastArchivedCall] = useState(null);
-  const [lastArchivedCalls, setLastArchivedCalls] = useState([]);
+  const [previousCalls, setPreviousCalls] = useState([]);
 
   useEffect(() => {
     fetch("https://aircall-backend.onrender.com/activities")
       .then((response) => response.json())
-      .then((data) => setCalls(data))
+      .then((data) => {
+        console.log("Fetched calls:", data);
+        setCalls(data);
+      })
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
-  const handleArchiveAll = () => {
-    const updatedCalls = calls.map((call) => ({ ...call, is_archived: true }));
-    setLastArchivedCalls(calls.filter((call) => !call.is_archived)); // Store the previous state of the calls
+  const handleArchiveAll = (currentCalls) => {
+    console.log("Archiving all calls...");
+    setPreviousCalls(calls);
+    const updatedCalls = calls.map((call) =>
+      currentCalls.includes(call) ? { ...call, is_archived: true } : call
+    );
     setCalls(updatedCalls);
 
-    updatedCalls.forEach((call) => {
+    currentCalls.forEach((call) => {
       fetch(`https://aircall-backend.onrender.com/activities/${call.id}`, {
         method: "PATCH",
         headers: {
@@ -31,28 +36,19 @@ const useCallActions = () => {
   };
 
   const handleUndoArchiveAll = () => {
-    setCalls((prevCalls) => {
-      const updatedCalls = prevCalls.map((call) =>
-        lastArchivedCalls.find((archivedCall) => archivedCall.id === call.id)
-          ? { ...call, is_archived: false }
-          : call
+    console.log("Undoing archive...");
+    setCalls(previousCalls);
+    previousCalls.forEach((call) => {
+      fetch(`https://aircall-backend.onrender.com/activities/${call.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ is_archived: false }),
+      }).catch((error) =>
+        console.error("Error unarchiving call:", error.message)
       );
-
-      lastArchivedCalls.forEach((call) => {
-        fetch(`https://aircall-backend.onrender.com/activities/${call.id}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ is_archived: false }),
-        }).catch((error) =>
-          console.error("Error undoing archive call:", error.message)
-        );
-      });
-
-      return updatedCalls;
     });
-    setLastArchivedCalls([]);
   };
 
   const handleArchive = (call) => {
@@ -78,16 +74,9 @@ const useCallActions = () => {
             c.id === call.id ? { ...c, is_archived: !c.is_archived } : c
           )
         );
-        setLastArchivedCall(call);
+        setPreviousCalls((prev) => [...prev, call]);
       })
       .catch((error) => console.error("Error updating call:", error.message));
-  };
-
-  const handleUndoArchive = () => {
-    if (lastArchivedCall) {
-      handleArchive(lastArchivedCall);
-      setLastArchivedCall(null);
-    }
   };
 
   return {
@@ -96,7 +85,6 @@ const useCallActions = () => {
     handleArchiveAll,
     handleUndoArchiveAll,
     handleArchive,
-    handleUndoArchive,
   };
 };
 

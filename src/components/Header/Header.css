@@ -1,26 +1,53 @@
 .header {
-    background-color: #effffc;
-    box-shadow: none;
-    border-bottom: 1px solid #e0e0e0;
-    width: 100%;
-    padding: 10px 20px;
-  }
-  
-  .toolbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
+  background-color: #effffc;
+  box-shadow: none;
+  border-bottom: 1px solid #e0e0e0;
+  width: 100%;
+  padding: 10px 20px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  color: black;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.avatar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcome-container{
+  display: flex;
+  flex-direction: row;
+  color:black;
+  justify-content: space-between;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-bottom: 5px;
+}
+
+.user-name {
+  color: #27c1a7;
+  font-size: 14px;
+  text-align: center;
+  margin-right: 34px;
+  margin-left: 10px;
+}
+
+@media (max-width: 600px) {
   .title {
-    color: black;
-    font-weight: bold;
-    font-size: 24px;
+    font-size: 18px;
   }
-  
-  @media (max-width: 600px) {
-    .title {
-      font-size: 18px;
-    }
-  }
-  
+}

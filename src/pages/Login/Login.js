@@ -71,6 +71,7 @@ const Login = () => {
             handlePasswordChange={handlePasswordChangeWrapper}
             isPasswordDirty={isPasswordDirty}
             passwordValidations={passwordValidations}
+            setErrorMessage={setErrorMessage}
           />
         </div>
       </div>

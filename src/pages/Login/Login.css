@@ -166,52 +166,52 @@
   .login-actions button:hover {
     background-color: #5b77f2;
   }
-  
-  @media (max-width: 768px) {
+
+  @media (max-width: 350px) {
     .login-card {
-      display: flex;
-      max-width: 600px;
+      max-height:90%
     }
-  
-    .login-card-left {
-      padding: 40px;
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-  
-    .login-card-left p {
-      font-size: 1.2em;
-      margin-bottom: 150px;
-    }
-  
+
     .login-card-right {
-      padding-top: 0;
+      padding: 30px;
+   
     }
-  
-    .login-actions button {
-      padding: 10px 50px;
-    }
+
+    .login-actions {
+      margin-top: -6px;
   }
+
+  .login-form select {
+    margin-top: -25px;
+  }
+}
   
-  @media (max-width: 480px) {
+  @media (max-width: 600px) {
     .login-card {
       flex-direction: column;
-      max-width: 100%;
+      max-width: 500px;
+      max-height:85%
     }
   
-    .login-card-left {
-      padding: 20px;
-      text-align: center;
-    }
+   .login-card-left {
+      padding: 63px;  
+  }
   
+  .login-card-right {
+    padding: 28px;
+ 
+  }
     .login-card-left h1 {
-      font-size: 1.5em;
-    }
-  
-    .login-card-left p,
+      font-size: 20px;
+      margin-top: -50px;
+  }
+
+  .login-card-left p {
+    font-size: 16px;
+    margin-left: 136px;
+    margin-top: -104px;
+  }
+    
     .login-card-right h2,
     .login-card-right h3,
     .login-card-right p {
@@ -221,6 +221,15 @@
     .login-actions button {
       padding: 10px;
       font-size: 0.9em;
+      margin-top: -12px;
     }
+
+    .password-requirements {
+      margin-top: -17px;
+      display: flex;
+     flex-direction: row;
+    }
+    
+
   }
   

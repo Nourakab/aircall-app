@@ -6,6 +6,7 @@
     width: 100%;
     padding: 20px;
     position: relative;
+ 
 }
 
 .search-filter-container {
@@ -157,6 +158,14 @@
   
 
   /* Media Queries */
+  @media (max-width: 350px) {
+    .phone-widget-toggle-button {
+        margin-top: 7px;
+        margin-left: -27px;
+       
+      }
+
+  }
   @media (max-width: 600px) {
 
     .filter-toggle-button {
@@ -196,10 +205,11 @@
         margin-left: auto;
       }
 
-  .phone-widget-toggle-button {
-    top: 108px;
- 
-  }
-    
+      .phone-widget-toggle-button {
+        top: 188px;
+        left: 135px;
+    }
+
+
   }
   

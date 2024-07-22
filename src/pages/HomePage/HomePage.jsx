@@ -14,16 +14,13 @@ const HomePage = () => {
     setCalls,
     handleArchiveAll,
     handleUndoArchiveAll,
-    handleUndoArchive,
     handleArchive,
   } = useCallActions();
   const [currentTab, setCurrentTab] = useState("activity");
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [undoAction, setUndoAction] = useState(null);
 
-  useEffect(() => {
-    console.log("Fetched calls:", calls);
-  }, [calls]);
+  useEffect(() => {}, [calls]);
 
   const filteredCalls = () => {
     if (!calls) {
@@ -36,8 +33,7 @@ const HomePage = () => {
         break;
       case "inbox":
         filtered = calls.filter(
-          (call) =>
-            call.call_type === "missed" || call.call_type === "voicemail"
+          (call) => call.call_type === "missed" || call.call_type === "answered"
         );
         break;
       case "all-calls":
@@ -49,14 +45,16 @@ const HomePage = () => {
       default:
         filtered = calls;
     }
-    console.log(`Filtered calls for ${currentTab}:`, filtered);
+
     return filtered;
   };
 
   const handleArchiveAllWithCheck = () => {
-    handleArchiveAll();
+    const callsToArchive = filteredCalls();
+    handleArchiveAll(callsToArchive);
     setUndoAction("archiveAll");
     setSnackbarOpen(true);
+    setTimeout(() => setSnackbarOpen(true), 100);
   };
 
   const handleUndoArchiveAllWithCheck = () => {
@@ -67,7 +65,8 @@ const HomePage = () => {
   const handleArchiveWithCheck = (call) => {
     handleArchive(call);
     setUndoAction("archive");
-    setSnackbarOpen(true);
+    setSnackbarOpen(false);
+    setTimeout(() => setSnackbarOpen(true), 100);
   };
 
   return (

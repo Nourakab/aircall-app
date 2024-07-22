@@ -3,7 +3,6 @@ import { Collapse } from "react-collapse";
 import ArchiveButton from "../ArchiveButton/ArchiveButton";
 import { FiPhoneCall } from "react-icons/fi";
 import { LuPhoneMissed } from "react-icons/lu";
-import { PiVoicemailFill } from "react-icons/pi";
 import { TbPhoneCheck } from "react-icons/tb";
 import {
   BsFillTelephoneInboundFill,
@@ -19,10 +18,6 @@ const getCallTypeIcon = (callType, currentTab) => {
         return (
           <TbPhoneCheck className="iconStyle" style={{ color: "#05e322" }} />
         );
-      case "voicemail":
-        return (
-          <PiVoicemailFill className="iconStyle" style={{ color: "red" }} />
-        );
       default:
         return null;
     }
@@ -31,11 +26,7 @@ const getCallTypeIcon = (callType, currentTab) => {
       case "missed":
         return <LuPhoneMissed className="iconStyle" style={{ color: "red" }} />;
       case "answered":
-        return <FiPhoneCall className="iconStyle" style={{ color: "red" }} />;
-      case "voicemail":
-        return (
-          <PiVoicemailFill className="iconStyle" style={{ color: "red" }} />
-        );
+        return <FiPhoneCall className="iconStyle" style={{ color: "green" }} />;
       default:
         return null;
     }
@@ -79,6 +70,13 @@ const CallItem = ({
   setCalls,
   handleArchive,
 }) => {
+  const callTypeColor =
+    call.call_type === "missed"
+      ? "red"
+      : call.call_type === "answered"
+      ? "green"
+      : "grey";
+
   return (
     <div key={call.id}>
       <li
@@ -94,8 +92,13 @@ const CallItem = ({
               {call.direction === "inbound" ? ` ${call.from}` : ` ${call.to}`}
             </div>
             {currentTab === "inbox" && (
-              <div style={{ fontFamily: "Afacad", color: "grey" }}>
-                {` Type: ${call.call_type}`}
+              <div
+                style={{
+                  color: callTypeColor,
+                  fontFamily: "Afacad",
+                }}
+              >
+                {` Call was: ${call.call_type}`}
               </div>
             )}
           </div>

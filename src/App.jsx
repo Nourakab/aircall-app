@@ -20,6 +20,7 @@ const App = () => {
           path="/"
           element={user ? <HomePage /> : <Navigate to="/login" />}
         />
+        {/* <Route path="/" element={<HomePage />} /> */}
       </Routes>
     </Router>
   );

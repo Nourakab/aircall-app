@@ -2,8 +2,6 @@ import React from "react";
 import "./FilterButtons.css";
 
 const FilterButtons = ({ filterCriteria, handleFilterChange, visible }) => {
-  console.log("Filter buttons visibility:", visible); // Add log here
-
   return (
     <div className={`filter-buttons ${visible ? "visible" : ""}`}>
       {["all", "inbound", "outbound", "answered", "missed"].map((criteria) => (

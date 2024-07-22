@@ -14,6 +14,7 @@ const LoginForm = ({
   handlePasswordChange,
   isPasswordDirty,
   passwordValidations,
+  setErrorMessage, // Include setErrorMessage in the props
 }) => (
   <div className="login-form">
     {errorMessage && <p className="error-message">{errorMessage}</p>}
@@ -71,7 +72,9 @@ const LoginForm = ({
           if (e.target.value !== "Admin") setAdminPassword("");
         }}
       >
-        <option value="Owner">Owner</option>
+        <option className="role-option" value="Owner">
+          Owner
+        </option>
         <option value="Admin">Admin</option>
       </select>
     </label>
